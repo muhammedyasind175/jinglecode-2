@@ -1,36 +1,33 @@
-class TaskManager:
-    def __init__(self):
-        self.todo_collection = []
+def start_tracker():
+    my_notes = []
 
-    def insert_task(self):
-        content = input("\nWhat needs to be done? ")
-        self.todo_collection.append(content)
-        print("Success: Task added to the registry.")
+    print("--- MY PERSONAL WORK LIST ---")
 
-    def display_tasks(self):
-        print("\n--- CURRENT REGISTRY ---")
-        if not self.todo_collection:
-            print("No active tasks found.")
-        else:
-            for count, item in enumerate(self.todo_collection, 1):
-                print(f"[{count}] {item}")
-
-def run_app():
-    app = TaskManager()
-    
     while True:
-        print("\n1) New Entry | 2) Show All | 3) Close")
-        user_input = input("Action: ")
+        print("\nWhat would you like to do?")
+        print("A - Add a new note")
+        print("B - View my notes")
+        print("C - Quit")
 
-        if user_input == '1':
-            app.insert_task()
-        else if user_input == '2':
-            app.display_tasks()
-        else if user_input == '3':
-            print("Shutting down...")
+        user_choice = input("Select an option: ").upper()
+
+        if user_choice == 'A':
+            item = input("Write your task here: ")
+            my_notes.append(item)
+            print("Done! It's in the list.")
+
+        else if user_choice == 'B':
+            print("\n--- TO-DO LIST ---")
+            if not my_notes:
+                print("Your list is empty right now.")
+            else:
+                for i in range(len(my_notes)):
+                    print(f"{i + 1}. {my_notes[i]}")
+
+        else if user_choice == 'C':
+            print("Closing the app. Have a great day!")
             break
-        else:
-            print("Command not recognized.")
 
-if __name__ == "__main__":
-    run_app()
+        else:
+            print("Oops! That's not a valid option. Try A, B, or C.")
+start_tracker()
