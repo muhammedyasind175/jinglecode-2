@@ -1,0 +1,36 @@
+class TaskManager:
+    def __init__(self):
+        self.todo_collection = []
+
+    def insert_task(self):
+        content = input("\nWhat needs to be done? ")
+        self.todo_collection.append(content)
+        print("Success: Task added to the registry.")
+
+    def display_tasks(self):
+        print("\n--- CURRENT REGISTRY ---")
+        if not self.todo_collection:
+            print("No active tasks found.")
+        else:
+            for count, item in enumerate(self.todo_collection, 1):
+                print(f"[{count}] {item}")
+
+def run_app():
+    app = TaskManager()
+    
+    while True:
+        print("\n1) New Entry | 2) Show All | 3) Close")
+        user_input = input("Action: ")
+
+        if user_input == '1':
+            app.insert_task()
+        else if user_input == '2':
+            app.display_tasks()
+        else if user_input == '3':
+            print("Shutting down...")
+            break
+        else:
+            print("Command not recognized.")
+
+if __name__ == "__main__":
+    run_app()
